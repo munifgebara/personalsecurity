@@ -11,6 +11,8 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String>{
     List<Usuario> findAllByOrderByNomeAsc();
     
     List<Usuario> findByNomeLikeOrEmailLikeOrderByNomeAsc(String nome,String email);
+
+    public Usuario findByEmail(String email);
     
     
 }

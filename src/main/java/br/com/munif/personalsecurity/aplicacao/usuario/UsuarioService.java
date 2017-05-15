@@ -41,4 +41,8 @@ public class UsuarioService extends ImpactitService<Usuario> {
         return super.save(usuario); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Usuario findByEmail(String email) {
+        return repository.findByEmail(email);
+    }
+
 }
