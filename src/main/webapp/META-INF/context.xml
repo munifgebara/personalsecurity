@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context path="/personalsecurity">
+  <Realm className="org.apache.catalina.realm.JDBCRealm" connectionName="root" connectionPassword="senha" connectionURL="jdbc:mysql://localhost:3306/personalsecurity?zeroDateTimeBehavior=convertToNull" debug="99" driverName="com.mysql.jdbc.Driver" roleNameCol="perfil" userCredCol="senha" userNameCol="email" userRoleTable="Usuario" userTable="Usuario"/>
+</Context>
