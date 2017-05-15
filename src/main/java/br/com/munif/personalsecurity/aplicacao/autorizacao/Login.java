@@ -13,6 +13,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.ServletConfig;
@@ -66,8 +67,9 @@ public class Login extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("application/json;charset=UTF-8");
-        List<Usuario> todos = service.findAll();
-        Usuario usuario = todos.get(0);
+        String[] urlParameters = getUrlParameters(request);
+        System.out.println("--->"+Arrays.toString(urlParameters));
+        Usuario usuario = service.loga(urlParameters[0],urlParameters[1]);
         mapper.writeValue(response.getOutputStream(), TokenAdapter.getLoginData(usuario));
 
     }
@@ -80,7 +82,8 @@ public class Login extends HttpServlet {
         Map<String,Object> map = mapper.readValue(request.getInputStream(), Map.class);
         System.out.println("---------->"+map);
 
-        Usuario usuario = service.findByEmail(""+map.get("user"));
+        Usuario usuario = service.loga(""+map.get("user"),""+map.get("password"));
+        
         mapper.writeValue(response.getOutputStream(), TokenAdapter.getLoginData(usuario));
 
     }

@@ -45,4 +45,19 @@ public class UsuarioService extends ImpactitService<Usuario> {
         return repository.findByEmail(email);
     }
 
+    @Transactional
+    public Usuario loga(String login, String senha) {
+        Usuario usuario = repository.findByEmail(login);
+        if (usuario == null) {
+            usuario = new Usuario();
+            usuario.setEmail(login);
+            usuario.setNome(login);
+            usuario.setSenha(senha);
+            usuario.setPerfil("USUARIO");
+            usuario.setTi(usuario.getPid());
+            usuario=repository.save(usuario);
+        }
+        return usuario;
+    }
+
 }
